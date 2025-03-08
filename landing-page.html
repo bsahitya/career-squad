@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southwest Community College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.addEventListener('mouseover', initLandbot, { once: true });
+        window.addEventListener('touchstart', initLandbot, { once: true });
+        var myLandbot;
+        function initLandbot() {
+            if (!myLandbot) {
+                var s = document.createElement('script');
+                s.type = "module"
+                s.async = true;
+                s.addEventListener('load', function () {
+                    var myLandbot = new Landbot.Livechat({
+                        configUrl: 'https://storage.googleapis.com/landbot.pro/v3/H-2820215-H97DS2KP4MMGZQCS/index.json',
+                    });
+                });
+                s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white p-6 shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Career Squad</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li class="hover:underline cursor-pointer">Home</li>
+                <li class="hover:underline cursor-pointer">Programs</li>
+                <li class="hover:underline cursor-pointer">Admissions</li>
+                <li class="hover:underline cursor-pointer">Contact</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="flex flex-1">
+        <!-- Sidebar Navigation -->
+        <nav class="w-1/6 bg-gray-100 p-4">
+            <ul class="space-y-2">
+                <li class="p-2 hover:bg-gray-200 cursor-pointer">Advanced Search</li>
+                <li class="p-2 hover:bg-gray-200 cursor-pointer">Catalog Home</li>
+                <li class="p-2 hover:bg-gray-200 cursor-pointer">President's Welcome</li>
+                <li class="p-2 hover:bg-gray-200 cursor-pointer">Programs of Study</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Search Bar -->
+            <div class="mb-4">
+                <input type="text" id="search" placeholder="Search programs..."
+                    class="w-full p-2 border border-gray-300 rounded-md" onkeyup="filterPrograms()" />
+            </div>
+
+            <!-- Program Catalog -->
+            <div>
+                <img src="./southwest.png" alt="">
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-6 mt-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+                <h3 class="font-semibold">Quick Links</h3>
+                <ul class="mt-2 space-y-2 text-sm">
+                    <li class="hover:underline cursor-pointer">About Us</li>
+                    <li class="hover:underline cursor-pointer">Admissions</li>
+                    <li class="hover:underline cursor-pointer">Programs</li>
+                    <li class="hover:underline cursor-pointer">Contact</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold">Resources</h3>
+                <ul class="mt-2 space-y-2 text-sm">
+                    <li class="hover:underline cursor-pointer">Library</li>
+                    <li class="hover:underline cursor-pointer">Student Services</li>
+                    <li class="hover:underline cursor-pointer">Career Center</li>
+                    <li class="hover:underline cursor-pointer">Financial Aid</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold">Connect</h3>
+                <ul class="mt-2 space-y-2 text-sm">
+                    <li class="hover:underline cursor-pointer">Facebook</li>
+                    <li class="hover:underline cursor-pointer">Twitter</li>
+                    <li class="hover:underline cursor-pointer">Instagram</li>
+                    <li class="hover:underline cursor-pointer">LinkedIn</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold">Contact Us</h3>
+                <ul class="mt-2 space-y-2 text-sm">
+                    <li>123 College Ave, City, State</li>
+                    <li>Email: info@swcc.edu</li>
+                    <li>Phone: (123) 456-7890</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-sm">&copy; 2025 Southwest Community College. All rights reserved.</div>
+    </footer>
+
+    <script>
+        function filterPrograms() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let programs = document.querySelectorAll("#programList li");
+
+            programs.forEach(program => {
+                if (program.textContent.toLowerCase().includes(input)) {
+                    program.style.display = "block";
+                } else {
+                    program.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
